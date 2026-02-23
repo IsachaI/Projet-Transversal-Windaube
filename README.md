@@ -1,45 +1,41 @@
 # Projet-Transversal
-Projet BAC1 Transversal EPHEC
 
-Nom du projet :  MasterDaube
+Projet BAC1 — Transversal EPHEC
 
-but du projet : 
-Le but est de à partir d'un raspberry pi et de quelques composants électronique,
-de faire un MasterMind.
+**Nom du projet :** MasterDaube
 
-Technologies utilisée et Matériel utilisée :
+## Objectif
 
-Partie dev : 
-  - Flask (python3) (framework web)
-  - HTML5 CSS3, JavaScript
+Créer un jeu MasterMind en utilisant un Raspberry Pi et quelques composants électroniques.
 
-Partie electro :
-  - 2 breadboards (1 pour le master et 1 pour le joueur)
-  - 2 raspberry pi (1 raspberry pi 3.5 et 1 raspberry pi 2)
-  - 2X 4-5 LED RGB
+## Technologies et matériel
 
-Fonctionnalité : 
+### Partie développement
+- Python 3 + Flask (framework web)
+- HTML5, CSS3, JavaScript
 
-- Affichage du nombre de couleurs séléctionner ou manquante 
+### Partie électronique
+- 2 breadboards (1 pour le maître / 1 pour le joueur)
+- 2 Raspberry Pi (Raspberry Pi 3.5 et Raspberry Pi 2)
+- 2 × 4–5 LED RGB
 
-Exemple d'une partie :
+## Fonctionnalités
+- Afficher le nombre de couleurs sélectionnées ou manquantes
+- Allumer la LED correspondante sur la breadboard du joueur lorsqu'il devine correctement
+- (Optionnel) Indicateur lumineux clignotant pendant le choix de la couleur pour l'effet visuel
+- Affichage du score / état de la partie sur un écran OLED ou LCD
 
-Joueur 1 -> Alice (Master) à sa breadboard avec toutes les LED allumer qui l'a choisit
-Joueur B -> Bob (joueur) à sa breaboard avec toutes les LED non allumer tant qu'il n'a pas trouver une couleur.
-Alice choisit pour chaques boules une couleur (ex. rouge,vert,bleu,jaune)
-Bob devine DANS L'ORDRE chaque couleur pour chaque boule.
+## Exemple d'une partie
 
-Si le joueur devine une couleur :
-- sur sa breadboard la LED correspondante à la couleur choisit s'allume.
-- (petit plus si on a le temps) -> pendant que le joueur choisit une couleur une petit lumière clignote.
-  pour l'effet du CHOIX.
+1. Alice (maître) configure sa séquence de couleurs sur sa breadboard (par ex. rouge, vert, bleu, jaune).
+2. Bob (joueur) tente de deviner la séquence, une position à la fois, dans le bon ordre.
+3. Lorsqu'une couleur est correctement devinée pour une position donnée :
+   - la LED correspondante sur la breadboard de Bob s'allume.
+4. Si le joueur trouve toute la séquence : affichage "Vous avez gagné !" et fin de la partie.
+5. Sinon, on continue ; on peut afficher combien de couleurs il manque (ex. "Il vous manque 3 couleurs") et fournir des indices.
 
-Via un écran OLED ou LCD affichage du score du joueur :
-
-- si le joueur à tout trouver -> affichage Youpi vous avez gagné :) (fin de la partie)
-- sinon tant que le joueur n'a pas trouver :
-	- lui afficher combien de couleur il lui manque (ex. il vous manque 3 couleurs) 
-        - lui donnée par exemple des petits indices .... (surplus si on a le temps)
+## Affichage et feedback
+- Utiliser un petit écran (OLED/LCD) pour afficher le score, le nombre d'essais, et des messages d'état.
+- Ajouter des effets lumineux (clignotement) pour améliorer le ressenti du choix de couleur.
 
 
-choses à rajouter ....
