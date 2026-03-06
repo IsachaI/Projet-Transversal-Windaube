@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/menuGame.css">
+    <title>Projet transversalle 2025</title>
+</head>
+<body>
+    <header>
+        <div class="container-header">
+            <h1>MasterDaube</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="menu">
+            <label name="mdp" for="mdp">Veuillez entrer le mot de passe :</label>
+            <input id="mdp" type="password" name="mdp">
+            <button id="btnConfirm" name="mdp">confirmer</button>
+            <p id="message"></p>
+            <button id="btnStart" class="cacher">START GAME</button>
+        </div>
+    </main>
+
+    <footer>
+        <p id="by">Réaliser par Mehdi, Alexandre, Valentin et Louis :)</p>
+    </footer>
+
+    <!--
+        Balise script temporaire ...
+    -->
+    <script src="../static/script.js"></script>
+<script>
+    document.getElementById("btnStart").addEventListener("click", function() {
+        alert('en cours loulou ...');
+    })
+</script>
+</body>
+</html>
