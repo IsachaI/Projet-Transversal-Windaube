@@ -30,7 +30,7 @@ body {
     align-items: center;
     height: 300px;
 }
-.cacher{
+.cache{
      display: none;
  }
 .no-access{
@@ -96,4 +96,166 @@ h1 {
     background-color: white;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+/*
+    Page du Game Master
+*/
+
+#game-master{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+    padding: 30px;
+    max-width: 920px;
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.65);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+    justify-items: center;
+    align-items: center;
+}
+
+#game-master > p {
+    grid-row: 1;
+}
+
+#game-master > button {
+    grid-row: 2;
+}
+
+#game-master button[type="submit"] {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: center;
+}
+
+#game-master br {
+    display: none;
+}
+
+#game-master .master-button{
+    width: 180px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #111;
+    font-size: 18px;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 120ms ease, background 120ms ease;
+}
+
+#game-master .master-button:hover{
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 1);
+}
+
+#led1, #led2, #led3, #led4{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
+}
+
+/*
+    Couleur des leds
+*/
+
+.rouge{
+    background-color: red;
+}
+.vert{
+    background-color: green;
+}
+.bleu{
+    background-color: blue;
+}
+.jaune{
+    background-color: yellow;
+}
+.blanc{
+    background-color: white;
+}
+.orange{
+    background-color: orange;
+}
+.violet{
+    background-color: violet;
+}
+.rose{
+    background-color: pink;
+}
+
+/* Color picker modal */
+#colorPicker{
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 999;
+    padding: 24px;
+}
+
+#colorPicker.active{
+    display: flex;
+}
+
+#colorPicker .color-panel{
+    width: min(520px, 90%);
+    background: rgba(12, 12, 16, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.55);
+    text-align: center;
+    color: white;
+}
+
+#colorPicker .color-panel h2{
+    margin-bottom: 14px;
+    font-size: 24px;
+    letter-spacing: 0.6px;
+}
+
+#colorPicker .color-row{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+#colorPicker .color-option{
+    padding: 12px 0;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+#colorPicker .color-option:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+#colorPicker .color-cancel{
+    padding: 10px 16px;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 120ms ease;
+}
+
+#colorPicker .color-cancel:hover{
+    background: rgba(255, 255, 255, 0.22);
 }
