@@ -1,4 +1,4 @@
-﻿﻿"use strict";
+﻿"use strict";
 
 function verificationMdp(mdp) {
     return mdp === "windaube";
@@ -113,5 +113,4 @@ window.addEventListener("DOMContentLoaded", () => {
     initLoginPage();
     initMasterLedButtons();
     initColorPicker();
-    initLedFormSubmit();
 });
