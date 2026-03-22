@@ -18,7 +18,7 @@
             <input id="mdp" type="password" name="mdp">
             <button id="btnConfirm" name="mdp">confirmer</button>
             <p id="message"></p>
-            <button id="btnStart" class="cacher">START GAME</button>
+            <a href="{{url_for('master')}}">START GAME</a>
         </div>
     </main>
 
@@ -30,10 +30,5 @@
         Balise script temporaire ...
     -->
     <script src="../static/script.js"></script>
-<script>
-    document.getElementById("btnStart").addEventListener("click", function() {
-        alert('en cours loulou ...');
-    })
-</script>
 </body>
 </html>
