@@ -18,7 +18,9 @@
             <input id="mdp" type="password" name="mdp">
             <button id="btnConfirm" name="mdp">confirmer</button>
             <p id="message"></p>
-            <a href="{{url_for('master')}}">START GAME</a>
+            <br>
+            <button id="master" class="choix-bouton bouton-master hidden">Master</button>
+            <button id="player" class="choix-bouton bouton-player hidden">Player</button>
         </div>
     </main>
 
@@ -30,5 +32,10 @@
         Balise script temporaire ...
     -->
     <script src="../static/script.js"></script>
+<script>
+    document.getElementById("btnStart").addEventListener("click", function() {
+        alert('en cours loulou ...');
+    })
+</script>
 </body>
 </html>

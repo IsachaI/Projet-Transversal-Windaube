@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿﻿"use strict";
 
-function verificationMdp(mdp){
+function verificationMdp(mdp) {
     return mdp === "windaube";
 }
 
@@ -9,7 +9,7 @@ function verificationMdp(mdp){
 const ledColorClasses = ["rouge", "vert", "bleu", "jaune", "blanc", "rose", "violet", "orange"];
 let currentLedIndex = null;
 
-function setLedColor(ledIndex, colorClass){
+function setLedColor(ledIndex, colorClass) {
     const led = document.getElementById(`led${ledIndex}`);
     if (!led) return;
 
@@ -81,20 +81,28 @@ function initLoginPage() {
     const btnConfirm = document.getElementById("btnConfirm");
     if (!btnConfirm) return;
 
-    btnConfirm.addEventListener("click", function(event){
+    btnConfirm.addEventListener("click", function (event) {
         let motsDePasse = document.getElementById("mdp").value;
         let message = document.getElementById("message");
-        if(verificationMdp(motsDePasse)){
-
-            // message d'accès
+        if (verificationMdp(motsDePasse)) {
             message.innerText = "Accès autorisé :)";
             message.classList.add("access");
-            document.querySelectorAll("*[name=mdp]").forEach(function(e){
-                e.classList.add("cache");
-            })
-            document.getElementById("btnStart").classList.remove("cache");
+            setTimeout(() => message.classList.add("animate-in"), 10);
 
-        }else{
+            document.querySelectorAll("*[name=mdp]").forEach(function (e) {
+                e.classList.add("cache");
+            });
+
+            const btnMaster = document.getElementById("master");
+            const btnPlayer = document.getElementById("player");
+
+            btnMaster.classList.remove("hidden");
+            btnPlayer.classList.remove("hidden");
+
+            setTimeout(() => btnMaster.classList.add("animate-in"), 50);
+            setTimeout(() => btnPlayer.classList.add("animate-in"), 160);
+
+        } else {
             document.getElementById("message").innerText = "Accès non autorisé :|";
             document.getElementById("message").classList.add("no-access");
         }
@@ -104,4 +112,6 @@ function initLoginPage() {
 window.addEventListener("DOMContentLoaded", () => {
     initLoginPage();
     initMasterLedButtons();
+    initColorPicker();
+    initLedFormSubmit();
 });

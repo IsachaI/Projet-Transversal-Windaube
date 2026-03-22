@@ -259,3 +259,80 @@ h1 {
 #colorPicker .color-cancel:hover{
     background: rgba(255, 255, 255, 0.22);
 }
+
+
+/* 
+    CSS général
+*/
+
+.hidden {
+    visibility:hidden ;
+}
+
+
+/*
+    Bouton Choix Player Master
+*/
+.choix-bouton {
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 14px 52px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 90ms ease, filter 90ms ease;
+    outline: none;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+}
+
+.choix-bouton:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+.choix-bouton:active {
+    transform: scale(0.96) translateY(1px);
+}
+
+.bouton-master {
+    background: #1c3a6e;
+    color: #ffffff;
+    border-top: 3px solid #6fa3e0;
+    border-left: 3px solid #6fa3e0;
+    border-right: 3px solid #0a1f45;
+    border-bottom: 3px solid #0a1f45;
+    box-shadow: 1px 1px 0 #000;
+}
+
+.bouton-player {
+    background: #1e5c10;
+    color: #ffffff;
+    border-top: 3px solid #7ed44a;
+    border-left: 3px solid #7ed44a;
+    border-right: 3px solid #0d2e07;
+    border-bottom: 3px solid #0d2e07;
+    box-shadow: 1px 1px 0 #000;
+}
+
+/* Animation déverrouillage */
+@keyframes boutonUnlock {
+    0%   { opacity: 0; transform: scale(0.6) translateY(30px); }
+    60%  { opacity: 1; transform: scale(1.08) translateY(-4px); }
+    80%  { transform: scale(0.97) translateY(2px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes boutonFadeMessage {
+    0%   { opacity: 0; letter-spacing: 8px; }
+    100% { opacity: 1; letter-spacing: normal; }
+}
+
+.animate-in {
+    animation: boutonUnlock 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.access.animate-in {
+    animation: boutonFadeMessage 0.4s ease;
+}
