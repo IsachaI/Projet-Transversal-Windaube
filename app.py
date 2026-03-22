@@ -31,3 +31,7 @@ def master():
 @app.route('/player')
 def player():
     return render_template('player.html')
+
+# pour le mode debug automatique
+if(__name__ == "__main__"):
+    app.run(debug=True)
