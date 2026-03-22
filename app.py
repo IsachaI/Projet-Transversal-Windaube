@@ -24,13 +24,17 @@ def master():
 
         print("Données reçus:", dictio)
 
-        return redirect('player')
+        return redirect('reponse')
 
     return render_template('master.html')
 
 @app.route('/player')
 def player():
     return render_template('player.html')
+
+@app.route('/reponse')
+def reponse():
+    return render_template('reponse.html')
 
 # pour le mode debug automatique
 if(__name__ == "__main__"):
