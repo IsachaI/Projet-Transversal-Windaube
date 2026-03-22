@@ -75,37 +75,6 @@ function initColorPicker() {
     });
 }
 
-function initLedFormSubmit() {
-    const form = document.getElementById("ledForm");
-    if (!form) return;
-
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        try {
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: formData,
-            });
-
-            if (!response.ok) {
-                console.error("Erreur de soumission du formulaire", response.status);
-                return;
-            }
-
-            // Optionnel : utilises les données renvoyées par le serveur
-            const text = await response.text();
-            console.log("Réponse du serveur :", text);
-
-            // Optionnel : afficher un retour visuel à l'utilisateur
-            // alert("Configuration enregistrée !");
-        } catch (error) {
-            console.error("Erreur réseau lors de la soumission du formulaire", error);
-        }
-    });
-}
-
 //Menu de connexion
 
 function initLoginPage() {
@@ -135,6 +104,4 @@ function initLoginPage() {
 window.addEventListener("DOMContentLoaded", () => {
     initLoginPage();
     initMasterLedButtons();
-    initColorPicker();
-    initLedFormSubmit();
 });
