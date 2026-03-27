@@ -1,2 +1,3 @@
-#ignorer environnement virtuel
-/.venv
+.env
+.git
+__pycache__
