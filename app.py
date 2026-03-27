@@ -1,4 +1,5 @@
 from flask import Flask,render_template,request,redirect,url_for
+from rpi_ws281x import PixelStrip,Color
 
 app = Flask(__name__)
 
@@ -12,8 +13,8 @@ dicoRGB = {
     'rouge':(255, 0, 0),
     'bleu':(0, 0, 255),
     'orange':(255, 165, 0),
-    'rose':(255, 192, 203),
-    'violet':(238, 130, 238),
+    'rose':(255, 138, 221),
+    'bleu-clair':(100, 185, 249),
     'vert':(0, 128, 0),
     'jaune':(255, 255, 0),
     'blanc':(255, 255, 255)
@@ -46,20 +47,20 @@ def master():
         # partie LEDS -> allumage des LEDS côtés MASTER
 
         # from rpi_ws281x import PixelStrip,Color
-        # LED_COUNT = 4
-        # LED PIN = 18
-        # strip = PixelStrip(LED_COUNT,LED_PIN)
-        # strip.begin()
-        # numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
-        # for clef in dico:
+        LED_COUNT = 4
+        LED_PIN = 18
+        strip = PixelStrip(LED_COUNT,LED_PIN)
+        strip.begin()
+        numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
+        for clef in dico:
         #       #décomposition de la led RGB (tuple)
-        #       R,G,B = dico[clef]
-        #       strip.setPixelColor(numLed,Color(R,G,B))
-        #       strip.show()
-        #       numLed+=1 # incrémentation pour passer à la led suivante
+             R,G,B = dico[clef]
+             strip.setPixelColor(numLed,Color(R,G,B))
+             strip.show()
+             numLed+=1 # incrémentation pour passer à la led suivante
         # ------------------------------------------------------
 
-        print("Données reçus:", dictio) # print de debug
+        print("Données reçus:", dico) # print de debug
 
         #return redirect('reponse')
         return redirect('player')
