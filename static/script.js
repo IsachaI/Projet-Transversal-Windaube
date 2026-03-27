@@ -4,9 +4,9 @@ function verificationMdp(mdp) {
     return mdp === "windaube";
 }
 
-// Gestion des LEDs 
+// Gestion des LEDs
 
-const ledColorClasses = ["rouge", "vert", "bleu", "jaune", "blanc", "rose", "violet", "orange"];
+const ledColorClasses = ["rouge", "vert", "bleu", "jaune", "blanc", "rose", "bleu-clair", "orange"];
 let currentLedIndex = null;
 
 function setLedColor(ledIndex, colorClass) {
