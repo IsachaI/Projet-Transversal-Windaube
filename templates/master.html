@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/menuGame.css">
+    <title>Projet transversal 2025-2026</title>
+</head>
+<body>
+    <header>
+        <div class="container-header">
+            <h1>MasterDaube - Game Master</h1>
+        </div>
+    </header>
+
+    <form id="ledForm" method="POST" action="/master">
+        <div id="game-master">
+            <p id="led1" class="rouge"></p>
+            <p id="led2" class="rouge"></p>
+            <p id="led3" class="rouge"></p>
+            <p id="led4" class="rouge"></p>
+            <input type="hidden" name="led1" value="rouge">
+            <input type="hidden" name="led2" value="rouge">
+            <input type="hidden" name="led3" value="rouge">
+            <input type="hidden" name="led4" value="rouge">
+            <button class="master-button" type="button" data-led="1">Led 1</button>
+            <button class="master-button" type="button" data-led="2">Led 2</button>
+            <button class="master-button" type="button" data-led="3">Led 3</button>
+            <button class="master-button" type="button" data-led="4">Led 4</button>
+            <button class="master-button" type="submit">Valider</button>
+        </div>
+    </form>
+
+    <div id="colorPicker" class="color-picker" aria-hidden="true">
+        <div class="color-panel" role="dialog" aria-label="Choisir une couleur">
+            <h2>Choisir la couleur</h2>
+            <div class="color-row">
+                <button class="color-option rouge" data-color="rouge" type="button"></button>
+                <button class="color-option vert" data-color="vert" type="button"></button>
+                <button class="color-option bleu" data-color="bleu" type="button"></button>
+                <button class="color-option jaune" data-color="jaune" type="button"></button>
+                <button class="color-option blanc" data-color="blanc" type="button"></button>
+                <button class="color-option rose" data-color="rose" type="button"></button>
+                <button class="color-option violet" data-color="violet" type="button"></button>
+                <button class="color-option orange" data-color="orange" type="button"></button>
+            </div>
+            <button class="color-cancel" type="button">Annuler</button>
+        </div>
+    </div>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>
