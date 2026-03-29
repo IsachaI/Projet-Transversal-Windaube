@@ -1,11 +1,29 @@
 from flask import Flask,render_template,request,redirect,url_for
 from rpi_ws281x import PixelStrip,Color
-
+import time
 app = Flask(__name__)
 
 # choix master COPIE
 choixMaster = {}
 
+# variable globale
+
+LED_PIN_MASTER = 18
+LED_PIN_PLAYER = 21
+LED_COUNT = 4
+strip_master = PixelStrip(LED_COUNT, LED_PIN_MASTER)
+strip_master.begin()
+strip_player = PixelStrip(LED_COUNT, LED_PIN_PLAYER)
+strip_player.begin()
+
+for i in range(LED_COUNT):
+    wait = 50
+    
+    strip_master.setPixelColor(i, Color(255,255,255))
+    strip_player.setPixelColor(i, Color(255,255,255))
+    strip_master.show()
+    strip_player.show()
+    time.sleep(wait / 100.0)
 
 # liste to RGB
 # site utiliser pour la conversion colorNAME TO RGB  --> https://products.aspose.app/svg/color-converter/name-to-rgb
@@ -30,6 +48,7 @@ def menuGame():
 @app.route('/master', methods=['GET','POST'])
 def master():
     global choixMaster # pour que par la suite on puissent faire des comparaison avec le choix du player
+    
     if request.method == 'POST':
         # Récupération des données du formulaire
 
@@ -46,17 +65,12 @@ def master():
         # EN COURS DE DEVELOPPEMENT !
         # partie LEDS -> allumage des LEDS côtés MASTER
 
-        # from rpi_ws281x import PixelStrip,Color
-        LED_COUNT = 4
-        LED_PIN = 18
-        strip = PixelStrip(LED_COUNT,LED_PIN)
-        strip.begin()
         numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
         for clef in dico:
         #       #décomposition de la led RGB (tuple)
              R,G,B = dico[clef]
-             strip.setPixelColor(numLed,Color(R,G,B))
-             strip.show()
+             strip_master.setPixelColor(numLed,Color(R,G,B))
+             strip_master.show()
              numLed+=1 # incrémentation pour passer à la led suivante
         # ------------------------------------------------------
 
