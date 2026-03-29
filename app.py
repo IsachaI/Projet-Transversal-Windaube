@@ -6,7 +6,7 @@ import time
 app = Flask(__name__)
 
 # choix master COPIE
-choixMaster = {}
+dicoMaster = {}
 
 # variable globale
 
@@ -49,7 +49,7 @@ def menuGame():
 
 @app.route('/master', methods=['GET','POST'])
 def master():
-    global choixMaster # pour que par la suite on puissent faire des comparaison avec le choix du player
+    global dicoMaster # pour que par la suite on puissent faire des comparaison avec le choix du player
     
     if request.method == 'POST':
         # Récupération des données du formulaire
@@ -62,16 +62,16 @@ def master():
         }
         # copie du choix master
 
-        choixMaster = dico.copy()
+        dicoMaster = dico.copy()
         # ------------------------------------------------------
         # EN COURS DE DEVELOPPEMENT !
         # partie LEDS -> allumage des LEDS côtés MASTER
 
         
         numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
-        for clef in dico:
+        for clef in dicoMaster:
         #       #décomposition de la led RGB (tuple)
-             R,G,B = dico[clef]
+             R,G,B = dicoMaster[clef]
              strip_master.setPixelColor(numLed,Color(R,G,B))
              strip_master.show()
              numLed+=1 # incrémentation pour passer à la led suivante
@@ -98,17 +98,24 @@ def player():
         }
 
         print("Données reçues:", dicoPlayer)  # Debug
-        print("Choix maître:", choixMaster)
+        print("Choix maître:", dicoMaster)
 
         # Comparaison des leds du joueur avec celles du MASTER MON GARS
-        bien_places, mal_places = utils.comparer(choixMaster, dicoPlayer)
+        bien_places, mal_places = utils.comparer(dicoMaster, dicoPlayer)
 
         print("LEDs bien placées:", bien_places)
         print("LEDs mal placées:", mal_places)
 
         segment.affichageScore(bien_places, mal_places)
-
+        numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
+        for clef in dicoPlayer:
+        #       #décomposition de la led RGB (tuple)
+             R,G,B = dicoPlayer[clef]
+             strip_player.setPixelColor(numLed,Color(R,G,B))
+             strip_player.show()
+             numLed+=1 # incrémentation pour passer à la led suivante
         # Si toutes les leds sont bien placer on redirige vers la page 'reponse'
+
         if bien_places == 4:
             return redirect('reponse')
 
