@@ -14,4 +14,39 @@ def comparer(dicoMaster, dicoPlayer):
         if couleur in frequence_dicoMaster:
             mal_places += min(frequence_dicoMaster[couleur], frequence_dicoPlayer[couleur])
 
+    print("Bien placés :", bien_places)
+    print("Mal placés :", mal_places)
     return bien_places, mal_places
+
+'''
+TESTS UNITAIRES
+dico1= {
+    'rouge':(255, 0, 0),
+    'bleu':(0, 0, 255),
+    'orange':(255, 165, 0),
+    'rose':(255, 138, 221),
+    'bleu-clair':(100, 185, 249),
+    'vert':(0, 128, 0),
+    'jaune':(255, 255, 0),
+    'blanc':(255, 255, 255)
+}
+#Rouge, rouge, blanc, bleu
+dico1= {
+    'led1': (255, 0, 0),
+    'led2': (255, 0, 0),
+    'led3': (255, 255, 255),
+    'led4': (0, 0, 255)
+}
+
+#Rouge, rouge, jaune, bleu
+dico2= {
+    'led1': (255, 255, 255),
+    'led2': (255, 255, 255),
+    'led3': (255, 255, 255),
+    'led4': (255, 255, 255)
+}
+comparer(dico1, dico2) #devrait retourner 2,1
+'''
+
+
+
