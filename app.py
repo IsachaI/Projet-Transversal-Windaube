@@ -69,6 +69,7 @@ def master():
 
 @app.route('/player')
 def player():
+
     return render_template('player.html')
 
 # route pour nos futur session
