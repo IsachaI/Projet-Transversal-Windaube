@@ -1,4 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for
+import utils
+import afficher7SegmentCode as segment
 from rpi_ws281x import PixelStrip,Color
 import time
 app = Flask(__name__)
@@ -18,7 +20,7 @@ strip_player.begin()
 
 for i in range(LED_COUNT):
     wait = 50
-    
+
     strip_master.setPixelColor(i, Color(255,255,255))
     strip_player.setPixelColor(i, Color(255,255,255))
     strip_master.show()
@@ -65,6 +67,7 @@ def master():
         # EN COURS DE DEVELOPPEMENT !
         # partie LEDS -> allumage des LEDS côtés MASTER
 
+        
         numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
         for clef in dico:
         #       #décomposition de la led RGB (tuple)
@@ -81,24 +84,39 @@ def master():
 
     return render_template('master.html')
 
-@app.route('/player')
+@app.route('/player', methods=['GET', 'POST'])
 def player():
+    bien_places = 0
+    mal_places = 0
     if request.method == 'POST':
-        # Récupération des données du formulaire
-
+        # Récupération des données du formulaire et conversion des couleurs en RGB
         dicoPlayer = {
-            'led1': dicoRGB[request.form.get('led1')], # conversion nom de la couleur en valeur RGB :)
+            'led1': dicoRGB[request.form.get('led1')],
             'led2': dicoRGB[request.form.get('led2')],
             'led3': dicoRGB[request.form.get('led3')],
             'led4': dicoRGB[request.form.get('led4')]
         }
-        print(dicoPlayer)
-        return redirect('reponse')
+
+        print("Données reçues:", dicoPlayer)  # Debug
+        print("Choix maître:", choixMaster)
+
+        # Comparaison des leds du joueur avec celles du MASTER MON GARS
+        bien_places, mal_places = utils.comparer(choixMaster, dicoPlayer)
+
+        print("LEDs bien placées:", bien_places)
+        print("LEDs mal placées:", mal_places)
+
+        segment.affichageScore(bien_places, mal_places)
+
+        # Si toutes les leds sont bien placer on redirige vers la page 'reponse'
+        if bien_places == 4:
+            return redirect('reponse')
+
     return render_template('player.html')
 
-# route pour nos futur session
 @app.route('/reponse')
 def reponse():
+    # page manipuler via du js pour afficher les data
     return render_template('reponse.html')
 
 # pour le mode debug automatique
