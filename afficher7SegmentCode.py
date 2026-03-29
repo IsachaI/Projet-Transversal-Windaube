@@ -8,7 +8,7 @@ display = tm1637.TM1637(clk=16, dio=26, chip_path="/dev/gpiochip4")
 
 def startJeu():
     """
-    Fonction de bienvenu
+    Fonction de bienvenue
     """
     display.scroll("MasterDaube", delay=0.3)
     time.sleep(1)
@@ -24,3 +24,6 @@ def startJeu():
     time.sleep(0.5)
     display.show("0")
     time.sleep(0.5)
+
+def affichageScore(bien_places,mal_places):
+    display.show(str(bien_places)+'-'+str(mal_places))
