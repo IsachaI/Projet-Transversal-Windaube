@@ -1,6 +1,5 @@
 from flask import Flask,render_template,request,redirect,url_for
-
-#from rpi_ws281x import PixelStrip,Color
+from rpi_ws281x import PixelStrip,Color
 
 app = Flask(__name__)
 
