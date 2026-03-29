@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for
-from rpi_ws281x import PixelStrip,Color
+
+#from rpi_ws281x import PixelStrip,Color
 
 app = Flask(__name__)
 
@@ -69,13 +70,23 @@ def master():
 
 @app.route('/player')
 def player():
+    if request.method == 'POST':
+        # Récupération des données du formulaire
 
+        dicoPlayer = {
+            'led1': dicoRGB[request.form.get('led1')], # conversion nom de la couleur en valeur RGB :)
+            'led2': dicoRGB[request.form.get('led2')],
+            'led3': dicoRGB[request.form.get('led3')],
+            'led4': dicoRGB[request.form.get('led4')]
+        }
+        print(dicoPlayer)
+        return redirect('reponse')
     return render_template('player.html')
 
 # route pour nos futur session
-#@app.route('/reponse')
-#def reponse():
-#    return render_template('reponse.html')
+@app.route('/reponse')
+def reponse():
+    return render_template('reponse.html')
 
 # pour le mode debug automatique
 if(__name__ == "__main__"):
