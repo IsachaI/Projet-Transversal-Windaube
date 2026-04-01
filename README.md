@@ -38,10 +38,11 @@ Créer un jeu MasterMind en utilisant un Raspberry Pi et quelques composants él
 - Utiliser un petit écran (OLED/LCD) pour afficher le score, le nombre d'essais, et des messages d'état.
 - Ajouter des effets lumineux (clignotement) pour améliorer le ressenti du choix de couleur.
 
-## Lancement
+## Lancement (Fonctionne que sur Windows)
 ### Branchement
 - Cable ETHERNET en direct vers une machine windows.
 - connecter le PC hôte a un réseaux éxtérieur a eduroam (4G/5G)
+- Activer le passage de connexion par ethernet (windows)
 ### Lancer le site
 - ```env/bin/activate```
 - ```sudo flask run --host="ip du raspberry sur le même résaux que le PC hôte" --port="port non utilisé du PC hôte (8000)"```
