@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # choix master COPIE
 dicoMaster = {}
-
+tentatives = 0
 # variable globale
 
 LED_PIN_MASTER = 18
@@ -62,6 +62,8 @@ def master():
         }
         # copie du choix master
 
+        tentatives = 0
+
         dicoMaster = dico.copy()
         # ------------------------------------------------------
         # EN COURS DE DEVELOPPEMENT !
@@ -96,6 +98,8 @@ def player():
             'led3': dicoRGB[request.form.get('led3')],
             'led4': dicoRGB[request.form.get('led4')]
         }
+
+        tentatives += 1
 
         print("Données reçues:", dicoPlayer)  # Debug
         print("Choix maître:", dicoMaster)

@@ -167,28 +167,28 @@ h1 {
 */
 
 .rouge{
-    background-color: red;
+    background-color: rgb(255, 0, 0);
 }
 .vert{
-    background-color: green;
+    background-color: rgb(0, 128, 0);
 }
 .bleu{
-    background-color: blue;
+    background-color: rgb(0, 0, 255);
 }
 .jaune{
-    background-color: yellow;
+    background-color: rgb(255, 255, 0);
 }
 .blanc{
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 .orange{
-    background-color: orange;
+    background-color: rgb(255, 165, 0);
 }
 .bleu-clair{
     background-color: rgb(100, 185, 249);
 }
 .rose{
-    background-color: pink;
+    background-color: rgb(255, 138, 221);
 }
 
 /* Color picker modal */
@@ -337,3 +337,40 @@ h1 {
 .access.animate-in {
     animation: boutonFadeMessage 0.4s ease;
 }
+
+.victoire {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(640px, 90vw);
+    padding: 24px;
+    margin: 40px auto;
+    background: rgba(30, 30, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+}
+
+.victoire h1 {
+    color: #ffffff;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 18px 16px;
+    font-size: clamp(1.9rem, 2.8vw, 2.8rem);
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    width: 100%;
+}
+
+#by {
+    position: relative;
+    z-index: 1;
+}
+
+
