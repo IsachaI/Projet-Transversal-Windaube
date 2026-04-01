@@ -44,4 +44,4 @@ Créer un jeu MasterMind en utilisant un Raspberry Pi et quelques composants él
 - connecter le PC hôte a un réseaux éxtérieur a eduroam (4G/5G)
 ### Lancer le site
 - ```env/bin/activate```
-- ```sudo flask run --host="ip du raspberry sur le même résaux que le PC hôte" --port="port non utilisé du PC hôte (8000)"
+- ```sudo flask run --host="ip du raspberry sur le même résaux que le PC hôte" --port="port non utilisé du PC hôte (8000)"```
