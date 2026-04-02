@@ -1,9 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for
 # importation des fonction externes
 import utils
-import time
 from rpi_ws281x import PixelStrip,Color
-import time
 app = Flask(__name__)
 
 # choix master COPIE
