@@ -2,8 +2,7 @@ import time
 import tm1637
 
 # Initialisation de la CONNEXIONNN
-display = tm1637.TM1637(clk=16, dio=26, chip_path="/dev/gpiochip4")
-
+display = tm1637.TM1637(clk=16, dio=26)
 
 
 def startJeu():
