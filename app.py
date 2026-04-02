@@ -1,6 +1,8 @@
 from flask import Flask,render_template,request,redirect,url_for
+# importation des fonction externes
 import utils
-import afficher7SegmentCode as segment
+import afficher7SegmentCode as segment 
+
 from rpi_ws281x import PixelStrip,Color
 import time
 app = Flask(__name__)
@@ -18,14 +20,8 @@ strip_master.begin()
 strip_player = PixelStrip(LED_COUNT, LED_PIN_PLAYER)
 strip_player.begin()
 
-for i in range(LED_COUNT):
-    wait = 50
-
-    strip_master.setPixelColor(i, Color(255,255,255))
-    strip_player.setPixelColor(i, Color(255,255,255))
-    strip_master.show()
-    strip_player.show()
-    time.sleep(wait / 100.0)
+#vérification des leds
+utils.initialisationLed(LED_COUNT,strip_master,strip_player);
 
 # liste to RGB
 # site utiliser pour la conversion colorNAME TO RGB  --> https://products.aspose.app/svg/color-converter/name-to-rgb
@@ -128,7 +124,7 @@ def player():
 @app.route('/reponse')
 def reponse():
     # page manipuler via du js pour afficher les data
-    return render_template('reponse.html')
+    return render_template('reponse.html',tentatives=tentatives)
 
 # pour le mode debug automatique
 if(__name__ == "__main__"):

@@ -1,3 +1,5 @@
+from rpi_ws281x import PixelStrip,Color
+import time
 def comparer(dicoMaster, dicoPlayer):
     bien_places = 0
     frequence_dicoMaster = {}
@@ -18,8 +20,18 @@ def comparer(dicoMaster, dicoPlayer):
     print("Mal placés :", mal_places)
     return bien_places, mal_places
 
+def initialisationLed(LED_COUNT,masterConf,playerConf):
+
+    wait = 50
+    for i in range(LED_COUNT):
+        masterConf.setPixelColor(i, Color(255,255,255))
+        playerConf.setPixelColor(i, Color(255,255,255))
+        masterConf.show()
+        playerConf.show()
+        time.sleep(wait / 100.0)
+
 '''
-TESTS UNITAIRES
+TESTS UNITAIRES pour la fonction comparer
 dico1= {
     'rouge':(255, 0, 0),
     'bleu':(0, 0, 255),
