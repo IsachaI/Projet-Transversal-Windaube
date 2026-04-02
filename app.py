@@ -120,12 +120,12 @@ def player():
 
         #segment.affichageScore(bien_places, mal_places)
             numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
-        for clef in dicoPlayer:
+            for clef in dicoPlayer:
                #décomposition de la led RGB (tuple)
-             R,G,B = dicoPlayer[clef]
-             strip_player.setPixelColor(numLed,Color(R,G,B))
-             strip_player.show()
-             numLed+=1 # incrémentation pour passer à la led suivante
+                R,G,B = dicoPlayer[clef]
+                strip_player.setPixelColor(numLed,Color(R,G,B))
+                strip_player.show()
+                numLed+=1 # incrémentation pour passer à la led suivante
         # Si toutes les leds sont bien placer on redirige vers la page 'reponse'
 
             if bien_places == 4:
