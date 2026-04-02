@@ -1,15 +1,16 @@
 from flask import Flask,render_template,request,redirect,url_for
 # importation des fonction externes
 import utils
-import afficher7SegmentCode as segment 
-
+import afficher7SegmentCode as segment
+import time
+import tm1637
 from rpi_ws281x import PixelStrip,Color
 import time
 app = Flask(__name__)
 
 # choix master COPIE
 dicoMaster = {}
-tentatives = 0
+jeuxStart = False
 # variable globale
 
 LED_PIN_MASTER = 18
@@ -46,7 +47,9 @@ def menuGame():
 @app.route('/master', methods=['GET','POST'])
 def master():
     global dicoMaster # pour que par la suite on puissent faire des comparaison avec le choix du player
-    
+    global tentatives
+    global jeuxStart
+    jeuxStart = False
     if request.method == 'POST':
         # Récupération des données du formulaire
 
@@ -58,9 +61,11 @@ def master():
         }
         # copie du choix master
 
-        tentatives = 0
-
         dicoMaster = dico.copy()
+
+        tentatives = 0
+        jeuxStart=True #le jeux à commencer !
+        print(jeuxStart)
         # ------------------------------------------------------
         # EN COURS DE DEVELOPPEMENT !
         # partie LEDS -> allumage des LEDS côtés MASTER
@@ -68,56 +73,63 @@ def master():
         
         numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
         for clef in dicoMaster:
-        #       #décomposition de la led RGB (tuple)
-             R,G,B = dicoMaster[clef]
-             strip_master.setPixelColor(numLed,Color(R,G,B))
-             strip_master.show()
-             numLed+=1 # incrémentation pour passer à la led suivante
+               #décomposition de la led RGB (tuple)
+            R,G,B = dicoMaster[clef]
+            strip_master.setPixelColor(numLed,Color(R,G,B))
+            strip_master.show()
+            numLed+=1 # incrémentation pour passer à la led suivante
         # ------------------------------------------------------
 
         print("Données reçus:", dico) # print de debug
 
         #return redirect('reponse')
-        return redirect('player')
+        return "<p>ton job est fait maintenant regarde le jouer HAHAHAHA</p>"
 
     return render_template('master.html')
 
 @app.route('/player', methods=['GET', 'POST'])
 def player():
+    global tentatives
+    global jeuxStart
     bien_places = 0
     mal_places = 0
-    if request.method == 'POST':
+
+    if jeuxStart==False:
+        return "<p>Le jeux n'a pas encore commencer</p>"
+    else:
+
+        if request.method == 'POST':
         # Récupération des données du formulaire et conversion des couleurs en RGB
-        dicoPlayer = {
-            'led1': dicoRGB[request.form.get('led1')],
-            'led2': dicoRGB[request.form.get('led2')],
-            'led3': dicoRGB[request.form.get('led3')],
-            'led4': dicoRGB[request.form.get('led4')]
-        }
+            dicoPlayer = {
+                'led1': dicoRGB[request.form.get('led1')],
+                'led2': dicoRGB[request.form.get('led2')],
+                'led3': dicoRGB[request.form.get('led3')],
+                'led4': dicoRGB[request.form.get('led4')]
+            }
 
-        tentatives += 1
+            tentatives += 1
 
-        print("Données reçues:", dicoPlayer)  # Debug
-        print("Choix maître:", dicoMaster)
+            print("Données reçues:", dicoPlayer)  # Debug
+            print("Choix maître:", dicoMaster)
 
         # Comparaison des leds du joueur avec celles du MASTER MON GARS
-        bien_places, mal_places = utils.comparer(dicoMaster, dicoPlayer)
+            bien_places, mal_places = utils.comparer(dicoMaster, dicoPlayer)
 
-        print("LEDs bien placées:", bien_places)
-        print("LEDs mal placées:", mal_places)
+            print("LEDs bien placées:", bien_places)
+            print("LEDs mal placées:", mal_places)
 
-        segment.affichageScore(bien_places, mal_places)
-        numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
+        #segment.affichageScore(bien_places, mal_places)
+            numLed = 0 # numéro de la led -> ex. led1->0,led2->1 etc....
         for clef in dicoPlayer:
-        #       #décomposition de la led RGB (tuple)
+               #décomposition de la led RGB (tuple)
              R,G,B = dicoPlayer[clef]
              strip_player.setPixelColor(numLed,Color(R,G,B))
              strip_player.show()
              numLed+=1 # incrémentation pour passer à la led suivante
         # Si toutes les leds sont bien placer on redirige vers la page 'reponse'
 
-        if bien_places == 4:
-            return redirect('reponse')
+            if bien_places == 4:
+                return redirect('reponse')
 
     return render_template('player.html')
 
