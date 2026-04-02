@@ -124,7 +124,7 @@ def player():
 @app.route('/reponse')
 def reponse():
     # page manipuler via du js pour afficher les data
-    return render_template('reponse.html',tentatives=tentatives)
+    return render_template('reponse.html',tentative=tentatives)
 
 # pour le mode debug automatique
 if(__name__ == "__main__"):
