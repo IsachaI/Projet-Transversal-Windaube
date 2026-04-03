@@ -26,3 +26,5 @@ def startJeu():
 
 def affichageScore(bien_places,mal_places):
     display.show(str(bien_places)+'-'+str(mal_places))
+
+startJeu()
