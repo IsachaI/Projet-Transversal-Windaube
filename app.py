@@ -94,7 +94,7 @@ def player():
     mal_places = 0
 
     if jeuxStart==False:
-        return "<p>Le jeux n'a pas encore commencer</p>"
+        return "<p>Le jeux n'a pas encore commencer <a href='{{url_for('menuGame')}}'>Clique ici pour retourner au menu</a></p>"
     else:
 
         if request.method == 'POST':
